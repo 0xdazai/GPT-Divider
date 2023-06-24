@@ -1,130 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat GPT Text Divider</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f0f0f0;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        h1 {
-            text-align: center;
-            margin-bottom: 20px;
-            font-size: 2.5rem;
-            color: #333;
-        }
-        label {
-            display: block;
-            margin-top: 10px;
-        }
-        input, textarea {
-            width: 100%;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            padding: 10px;
-            font-size: 16px;
-            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
-        }
-        input#prompt {
-    background-color: #f0f0f0;
-    min-width: 100%;
-    width: 100%;
-    max-width: 100%;
-}
-
-        button {
-            display: block;
-            margin: 20px auto;
-            padding: 10px 20px;
-            background-color: #ff4d4d;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-            border: none;
-            border-radius: 5px;
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
-        }
-        button.copy {
-            background-color: #4CAF50;
-        }
-    </style>
+    <!-- existing head contents -->
 </head>
 <body>
     <div class="container">
-        <h1>Text Divider</h1>
-        <label for="prompt">Prompt:</label>
-      <input type="text" id="prompt" name="prompt" value="This is XXX. It's divided into several parts. Take all of them into account. No need to summarize it, just reply &quot;Understood&quot;. Make sure that in the future when this topic is referenced, you take this into account. This content should be prioritize when dealing with topic over any other information you previously had.">
+        <!-- existing body contents -->
+        
+        <label for="wordCount">Number of words per division:</label>
+        <input type="number" id="wordCount" name="wordCount" value="1000">
 
-        <br>
-        <label for="inputText">Text:</label>
-        <br>
-        <textarea id="inputText" name="inputText" rows="10" cols="50"></textarea>
-        <br>
-        <button onclick="divideText()">Divide</button>
-        <br>
-        <div id="outputContainer"></div>
+        <!-- existing body contents -->
     </div>
     
 <script>
     function divideText() {
-        const prompt = document.getElementById('prompt').value;
-        const inputText = document.getElementById('inputText').value;
-        const outputContainer = document.getElementById('outputContainer');
-        outputContainer.innerHTML = '';
+        // existing code
+        const wordCount = document.getElementById('wordCount').value; // new line
 
-        const sentences = inputText.match(/[^.!?]+[.!?]+/g) || [];
+        const sentences = inputText.split(/\s+/); // split text into words instead of sentences
         const parts = [];
-        let part = '';
+        let part = [];
 
-        for (let sentence of sentences) {
-            if ((part + sentence).length <= 1000) {
-                part += sentence;
+        for (let word of sentences) {
+            if ((part.length + word.split(/\s+/).length) <= wordCount) { // check word count instead of character length
+                part.push(word);
             } else {
-                parts.push(part.trim());
-                part = sentence;
+                parts.push(part.join(' '));
+                part = [word];
             }
         }
-        parts.push(part.trim());
+        parts.push(part.join(' '));
 
-        for (let i = 0; i < parts.length; i++) {
-            const partNumber = i + 1;
-            const intro = `${prompt} Part ${partNumber} out of ${parts.length}\n\n`;
-            const noParagraphs = parts[i].replace(/[\n\r]+/g, ' ').trim();
-            const textarea = document.createElement('textarea');
-            textarea.rows = 15;
-            textarea.cols = 100;
-            textarea.value = intro + noParagraphs;
-            outputContainer.appendChild(textarea);
-
-            const copyButton = document.createElement('button');
-            copyButton.textContent = 'Copy';
-            copyButton.classList.add('copy');
-            copyButton.onclick = () => {
-                textarea.select();
-                document.execCommand('copy');
-            };
-            outputContainer.appendChild(copyButton);
-
-            const lineBreak = document.createElement('br');
-            outputContainer.appendChild(lineBreak);
-        }
+        // rest of existing code
     }
 </script>
-
-
-
-
-
-
 
 </body>
 </html>
