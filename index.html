@@ -17,10 +17,12 @@
             padding: 20px;
         }
         h1 {
-            text-align: center;
-            margin-bottom: 20px;
-            font-size: 2.5rem;
-            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        h1 img {
+            margin-right: 10px;
         }
         label {
             display: block;
@@ -60,9 +62,12 @@
 <body>
     <div class="container">
         <h1>
-             <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub icon" width="32" height="32" style="vertical-align: middle;">
-            Dazai GPT Text Divider
+            <a href="https://github.com/0xdazai/GPT-Divider" target="_blank">
+                <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub icon" width="32" height="32">
+                Dazai GPT Text Divider
+            </a>
         </h1>
+
         <p>This tool aids users in fragmenting larger texts into smaller, labeled sections, allowing for ease of use with OpenAI's Chat GPT and other LLMs while maintaining context and coherence. Simply input your desired prompt, specify the word count per division, paste your text, and press 'Divide' to segment your text into convenient, labeled parts.</p>
         <label for="prompt">Prompt:</label>
         <input type="text" id="prompt" name="prompt" value="This is [content label]. It's divided into several parts. Take all of them into account. No need to summarize it, just reply &quot;Understood&quot;. Make sure that in the future when this topic is referenced, you take this into account. This content should be prioritized when dealing with the topic over any other information you previously had.">
