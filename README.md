@@ -15,5 +15,3 @@ Additionally, the tool labels each part which allows for easy reference and help
 - **Text Division**: Divides large pieces of text into smaller parts based on user-defined word count.
 - **Copy Buttons**: Easy-to-use 'Copy' buttons for each divided part to facilitate copying and pasting into Chat GPT.
 - **Part Identification**: Each part is labeled with the part number out of the total number of parts, helping with easy reference and maintaining coherence.
-
-Please note that changes might take a few moments to process. If you're having any issues, please refer back to this README for instructions.
